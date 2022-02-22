@@ -6,16 +6,80 @@
 	<select id="selectEstate" parameterType="int" resultType="com.quiz.lesson03.model.RealEstate">
 		SELECT
 			`id`
-			, `storeId`
-			, `menu`
-			, `userName`
-			, `point`
-			, `review`
+			, `realtorId`
+			, `address`
+			, `area`
+			, `type`
+			, `price`
+			, `rentPrice`
 			, `createdAt`
 			, `updatedAt`
+			
 		FROM
 			`new_review`
 		WHERE
 			`id` = #{id}
 	</select>
+	
+	<select id="selectRealEstateListByRentPrice" parameterType="int" resultType="com.quiz.lesson03.model.RealEstate">
+		SELECT
+			`id`
+			, `realtorId`
+			, `address`
+			, `area`
+			, `type`
+			, `price`
+			, `rentPrice`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			<![CDATA[
+			`rentPrice` < #{rentPrice}
+			]]>
+	</select>
+	
+	<select id="selectRealEstateListByAreaAndPrice" parameterType="map" resultType="com.quiz.lesson03.model.RealEstate">
+		SELECT
+			`id`
+			, `realtorId`
+			, `address`
+			, `area`
+			, `type`
+			, `price`
+			, `rentPrice`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			`type` = '매매'
+			AND `area` >= #{area}
+			AND `price`  
+					
+	</select>
+	
+	<insert id="insertRealEstate" parameterType="com.quiz.lesson03.model.RealEstate">
+		INSERT INTO `real_estate`
+		(
+			 `realtorId`
+			, `address`
+			, `area`
+			, `type`
+			, `price`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{realtorId}
+			,#{address}
+			,#{area}
+			,#{type}
+			,#{price}
+			,NOW()
+			,NOW()
+		)
+	</insert>
 </mapper>

@@ -9,7 +9,7 @@
     </appender>
 
     <!-- Logger -->
-    <logger name="com.marobiana" level="DEBUG" appender-ref="console" />
+    <logger name="com.quiz" level="DEBUG" appender-ref="console" />
 
     <!-- Root Logger -->
     <root level="info">
