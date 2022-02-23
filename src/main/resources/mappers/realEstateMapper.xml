@@ -82,4 +82,45 @@
 			,NOW()
 		)
 	</insert>
+	
+	<insert id="insertRealEstateAsField" parameterType="map">
+				INSERT INTO `real_estate`
+		(
+			 `realtorId`
+			, `address`
+			, `area`
+			, `type`
+			, `price`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{realtorId}
+			,#{address}
+			,#{area}
+			,#{type}
+			,#{price}
+			,NOW()
+			,NOW()
+		)
+	</insert>
+	
+	<update id="updateReviewById" parameterType="map">
+		UPDATE `real_estate`
+		SET
+			`type` = #{type}
+			, `price` = #{price}
+			, `updatedAt` = NOW()
+		WHERE
+			`id` = #{id}
+	</update>
+	
+	<delete id="deletetRealestateById" parameterType="int">
+		DELETE
+		FROM
+			`real_estate`
+		WHERE
+			`id` = #{id}
+	</delete>
 </mapper>
