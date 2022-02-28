@@ -2,12 +2,15 @@ package com.quiz.lesson04;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quiz.lesson04.bo.sellerBO;
+import com.quiz.lesson04.model.Seller;
 
 @RequestMapping("/lesson04/quiz01")
 @Controller
@@ -38,9 +41,12 @@ public class Lesson04Quiz01Controller {
 	
 	// 문제2
 	// 요청 URL: http://localhost/lesson04/quiz01/seller_info
-	@RequestMapping("/seller_info")
-	public sellerInfo() {
-		return "";
+	@GetMapping("/2")
+	public String sellerInfo(Model model) {
+		Seller newSeller = sellerBO.getLastSeller();
+		model.addAttribute("result", newSeller);
+		model.addAttribute("subject", "판매자 정보");
+		return "lesson04/seller_info";
 		
 		
 	}
