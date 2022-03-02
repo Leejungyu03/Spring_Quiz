@@ -13,5 +13,46 @@
 </head>
 <body>
 	<h1>멤버십</h1>
+	<table class="table text-center">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>전화 번호</th>
+				<th>등급</th>
+				<th>포인트</th>
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach var="membership" items="${membership}" varStatus="status">
+			<tr>
+				<td>${membership.name}</td>
+				<td>${membership.phoneNumber}</td>
+				<td>
+				<c:choose>
+					<c:when test="${membership.grade eq 'VIP'}">
+						<span class="text-danger">${membership.grade}</span>
+					</c:when>
+					<c:when test="${membership.grade eq 'GOLD'}">
+						<span class="text-warning">${membership.grade}</span>
+					</c:when>
+					<c:otherwise>
+						<span>${membership.grade}</span>		
+					</c:otherwise>
+				</c:choose>
+				</td>
+				<td>
+					<c:choose>
+						<c:when test="${membership.point >= 5000}">
+							<span class="text-primary">${membership.point}</span>
+						</c:when>
+						<c:otherwise>
+							<span>${membership.point}</span>
+						</c:otherwise>
+					</c:choose>
+				</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	</table>
 </body>
 </html>
