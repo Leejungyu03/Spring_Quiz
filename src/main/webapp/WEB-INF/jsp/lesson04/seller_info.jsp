@@ -10,13 +10,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
-<body>
-		
+<body>	
 	<div class="container">
-		<h1>${subject}</h1>
-		<img src=${result.profileImageUrl} width="300"> <br>
-		<h2>${result.nickname}</h2>
-		<h2>${result.temperature}</h2>
+		<h1>판매자 정보</h1>
+		<img src="${seller.profileImageUrl}" alt="판매자 프로필 사진" width="300" height="300"><br>
+		<span class="display-3">${seller.nickname}</span><br>
+		<span class="display-4 text-warning">${seller.temperature}</span>
 	</div>
 </body>
 </html>

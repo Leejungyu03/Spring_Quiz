@@ -3,51 +3,49 @@ package com.quiz.lesson04;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.quiz.lesson04.bo.sellerBO;
+import com.quiz.lesson04.bo.SellerBO;
 import com.quiz.lesson04.model.Seller;
 
 @RequestMapping("/lesson04/quiz01")
-@Controller
+@Controller	
 public class Lesson04Quiz01Controller {
-
-		@Autowired
-		private sellerBO sellerBO;
-		
-	// 요청 URL: http://localhost/lesson04/qu01/1
-	@RequestMapping(method = RequestMethod.GET, path = "/1")
-	public String addSeller() {
+	
+	@Autowired
+	private SellerBO sellerBO;
+	
+	// 1번 문제
+	@RequestMapping("/1")
+	public String quiz01_1() {
 		return "lesson04/add_seller";
 	}
 	
-	// 요청 URL: http://localhost/lesson04/quiz01/add_seller
-	@PostMapping("/add_seller")
+	@RequestMapping("/add_seller")
 	public String addSeller(
 			@RequestParam("nickname") String nickname,
-			@RequestParam("profileImageUrl") String profileImageUrl,
+			@RequestParam("profile_url") String profileImageUrl,
 			@RequestParam("temperature") double temperature) {
 		
-		// DB insert
-		sellerBO.addSeller(nickname, profileImageUrl, temperature);
-		
+		sellerBO.insertSeller(nickname, profileImageUrl, temperature);
 		return "lesson04/after_add_seller";
-		
-		}
-	
-	// 문제2
-	// 요청 URL: http://localhost/lesson04/quiz01/seller_info
-	@GetMapping("/2")
-	public String sellerInfo(Model model) {
-		Seller newSeller = sellerBO.getLastSeller();
-		model.addAttribute("result", newSeller);
-		model.addAttribute("subject", "판매자 정보");
-		return "lesson04/seller_info";
-		
-		
 	}
+	
+	// 2번 문제
+	@RequestMapping("/seller_info")
+	public String sellerInfo(
+			@RequestParam(value="id", required=false) Integer id,
+			Model model) {
+		
+		Seller seller = null;
+		if (id == null) {
+			seller = sellerBO.getLatestSeller();
+		} else {
+			seller = sellerBO.getSeller(id);
+		}
+		model.addAttribute("seller", seller);
+		return "lesson04/seller_info";
+	}
+	
 }
