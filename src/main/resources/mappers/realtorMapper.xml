@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.quiz.lesson04.dao.RealtorDAO">
+ 	<insert id="insertRealtor" parameterType="com.quiz.lesson04.model.Realtor"
+ 	useGeneratedKeys="true" keyProperty="id">
+ 	INSERT INTO `realtor`
+ 	(
+		`office`
+		,`phoneNumber`
+		,`address`
+		,`grade`
+ 	)
+ 	VALUES
+ 	(
+ 		#{office}
+ 		,#{phoneNumber}
+ 		,#{address}
+ 		,#{grade}
+ 	)
+ 	</insert>
+ 	
+ 	<select id="selectRealtor" parameterType="int" resultType="com.quiz.lesson04.model.Realtor">
+ 		SELECT
+ 			`id`
+			,`office`
+			,`phoneNumber`
+			,`address`
+			,`grade`
+		FROM
+			`realtor`
+		WHERE
+			`id` = #{id}
+ 	</select>
+ 
+ </mapper>
