@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+#wrap {
+	width: 1200px;
+	height: 100%;
+}
+
+.left-contents {
+	width: 20%;
+	background-color: rgb(100, 149, 236);
+}
+.left-contents .image {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+.left-contents nav ul {
+	padding: 0;
+	margin-left: 10px;
+}
+.left-contents nav ul li {
+	margin-top: 15px;
+	list-style: none;
+}
+.left-contents nav ul li a {
+	color: white;
+	font-weight: 600;
+}
+
+.right-contents {
+	width: 75%;
+	margin-left: 40px;
+	margin-top: 30px;
+}
+
+.input-label {
+    width:130px;
+    text-align: right;
+    margin-right:10px;
+}
+footer {
+	margin-top: 30px;
+	margin-bottom: 40px;
+}
