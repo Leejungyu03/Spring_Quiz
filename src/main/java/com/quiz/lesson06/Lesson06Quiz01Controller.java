@@ -49,4 +49,24 @@ public class Lesson06Quiz01Controller {
 		model.addAttribute("favoriteList", favoriteList);
 		return "lesson06/favorite_list";
 	}
+	
+	// 주소의 중복 확인 - AJAX를 통해 오는 요청
+	@ResponseBody
+	@PostMapping("/lesson06/quiz02/check_duplication_url")
+	public Map<String, Boolean> checkDuplicationUrl (
+			@RequestParam("url") String url) {
+		
+		Map<String, Boolean> result = new HashMap<>();
+		Favorite favorite = favoriteBO.getFavoriteByUrl(url);
+		
+		if (favorite == null) {
+			result.put("result", false);
+		} else {
+			result.put("result", true);
+		}
+		
+		result.put("result", true);
+		
+		return result;
+	}
 }

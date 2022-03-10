@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+
+#wrap {
+	width: 1200px;
+}
+header {
+	width: 100%;
+}
+nav {
+	background-color: rgb(227, 135, 31);
+}
+
+.booking-list .list-text {
+	font-weight: 600;
+	font-size: 30px;
+}
+
+footer span {
+	font-size: 14px;
+}

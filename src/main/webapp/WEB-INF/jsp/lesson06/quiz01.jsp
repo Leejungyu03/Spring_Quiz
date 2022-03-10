@@ -25,6 +25,8 @@
 			<label for="url">URL 주소</label>
 			<input type="text" id="url" class="form-control">
 		</div>
+		<small id="" class="text-danger">중복된 url입니다.</small>
+		<small id="" class="text-primary">중복되지 않은 url입니다.</small>
 		
 		<button type="button" id="addFavoriteBtn" class="btn btn-success btn-block">추가</button>
 	</div>
@@ -64,6 +66,14 @@
 					}, error:function(e) {
 						alert("error:" + e);
 					} 
+				});
+				
+				
+				$.ajax({
+					type : "post",
+					url : "lesson06/quiz02/check_duplication_url",
+					data : {"url" : url},
+					
 				});
 			});
 		});

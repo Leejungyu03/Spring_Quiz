@@ -20,4 +20,8 @@ public class FavoriteBO {
 	public List<Favorite> getFavoriteList() {
 		return favoriteDAO.selectFavoriteList();
 	}
+	
+	public Favorite getFavoriteByUrl(String url) {
+		return favoriteDAO.selectFavoriteByUrl();
+	}
 }

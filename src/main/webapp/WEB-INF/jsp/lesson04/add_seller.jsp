@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>ÆÇ¸ÅÀÚ Ãß°¡</title>
+<meta charset="UTF-8">
+<title>íŒë§¤ìž ì¶”ê°€</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -13,19 +13,19 @@
 </head>
 <body>
 	<div class="container">
-		<h1>ÆÇ¸ÅÀÚ Ãß°¡</h1>
+		<h1>íŒë§¤ìž ì¶”ê°€</h1>
 		
 		<form method="post" action="/lesson04/quiz01/add_seller">
-			<span>´Ð³×ÀÓ</span><br>
+			<span>ë‹‰ë„¤ìž„</span><br>
 			<input type="text" name="nickname" class="form-control col-3"><br>
 			
-			<span>ÇÁ·ÎÇÊ »çÁø url</span><br>
+			<span>í”„ë¡œí•„ ì‚¬ì§„ url</span><br>
 			<input type="text" name="profile_url" class="form-control col-9"><br>
 		
-			<span>¿Âµµ</span><br>
+			<span>ì˜¨ë„</span><br>
 			<input type="text" name="temperature" class="form-control col-3"><br>
 			
-			<input type="submit" value="Ãß°¡" class="btn btn-primary">
+			<input type="submit" value="ì¶”ê°€" class="btn btn-primary">
 		</form>
 	</div>
 </body>
