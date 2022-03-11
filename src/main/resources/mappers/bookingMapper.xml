@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="com.quiz.lesson06.dao.BookingBAO">
+ <mapper namespace="com.quiz.lesson06.dao.BookingDAO">
  	<select id="selectBookingList" resultType="com.quiz.lesson06.model.Booking">
  		SELECT
  			`id`
@@ -17,4 +17,25 @@
 		FROM
 			`booking`
  	</select>
+ 	
+ 	<insert id="insertNewBooking" parameterType="map">
+ 		INSERT INTO `booking`
+ 		(
+			`name`
+			,`headcount`
+			,`day`
+			,`date`
+			,`phoneNumber`
+			, `state`
+		)
+		VALUES
+		(
+			#{name}
+			,#{headcount}
+			,#{day}
+			,#{date}
+			,#{phoneNumber}
+			,'대기중'
+		)
+ 	</insert>
  </mapper>

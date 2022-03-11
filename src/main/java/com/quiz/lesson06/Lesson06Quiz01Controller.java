@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,9 +26,11 @@ public class Lesson06Quiz01Controller {
 		return "lesson06/quiz01";
 	}
 	
-	// 즐겨찾기 추가 기능 - AJAX 호출로 들어오는 요청
+	// AJAX의 요청이 왔을 때,
+	// - 서버 쪽에서 @ResponseBody 어노테이션을 사용해야 한다.
+	// - 리턴되는 값이 반드시 있어야 한다.
 	@ResponseBody
-	@PostMapping("/quiz01/add_favorite")
+	@RequestMapping("/quiz01/add_favorite")
 	public Map<String, String> addFavorite(
 			@RequestParam("title") String title,
 			@RequestParam("url") String url) {
@@ -50,22 +51,36 @@ public class Lesson06Quiz01Controller {
 		return "lesson06/favorite_list";
 	}
 	
-	// 주소의 중복 확인 - AJAX를 통해 오는 요청
+	// Quiz02 - url 중복 체크
 	@ResponseBody
-	@PostMapping("/lesson06/quiz02/check_duplication_url")
-	public Map<String, Boolean> checkDuplicationUrl (
+	@RequestMapping("/quiz02/check_duplication_url")
+	public Map<String, Boolean> checkDuplicationUrl(
 			@RequestParam("url") String url) {
 		
 		Map<String, Boolean> result = new HashMap<>();
-		Favorite favorite = favoriteBO.getFavoriteByUrl(url);
+		result.put("isDuplication", false);
 		
-		if (favorite == null) {
-			result.put("result", false);
-		} else {
-			result.put("result", true);
+		Favorite favorite = favoriteBO.getFavoriteByUrl(url);
+		if (favorite != null) {
+			result.put("isDuplication", true);
 		}
 		
-		result.put("result", true);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/quiz02/delete_favorite")
+	public Map<String, String> deleteFavorite(
+			@RequestParam("favorite_id") int id) {
+		
+		int deletedRow = favoriteBO.deleteFavoriteById(id);
+		
+		Map<String, String> result = new HashMap<>();
+		if (deletedRow > 0) {
+			result.put("result", "success");
+		} else {
+			result.put("result", "fail");
+		}
 		
 		return result;
 	}

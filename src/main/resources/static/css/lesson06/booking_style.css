@@ -16,6 +16,16 @@ nav {
 	font-size: 30px;
 }
 
+.booking-add{
+	width: 45%;
+	margin-left: 25%;
+}
+.booking-add .add-text {
+	font-weight: 600;
+	font-size: 30px;
+}
+
+
 footer span {
 	font-size: 14px;
 }

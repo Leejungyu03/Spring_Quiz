@@ -23,16 +23,48 @@
 
 		<div class="form-group">
 			<label for="url">URL 주소</label>
-			<input type="text" id="url" class="form-control">
+			
+			<div class="form-inline">
+				<input type="text" id="url" class="form-control col-10">
+				<button type="button" id="checkDuplicateBtn" class="btn btn-info">중복확인</button>
+			</div>
+			<small id="isDuplicationText" class="text-danger d-none">중복된 url 입니다.</small>
+			<small id="availableUrlText" class="text-success d-none">저장 가능한 url 입니다.</small>
 		</div>
-		<small id="" class="text-danger">중복된 url입니다.</small>
-		<small id="" class="text-primary">중복되지 않은 url입니다.</small>
 		
 		<button type="button" id="addFavoriteBtn" class="btn btn-success btn-block">추가</button>
 	</div>
 	
 	<script>
 		$(document).ready(function() {
+			// Quiz02) url 중복 확인
+			$('#checkDuplicateBtn').on('click', function(e) {
+				var url = $('#url').val().trim();
+				if (url == '') {
+					alert("검사할 url을 입력해주세요.");
+					return;
+				}
+				
+				$.ajax({
+					type:'post'
+					, url: '/lesson06/quiz02/check_duplication_url'
+					, data: {'url': url}
+					, success: function(data) {
+						if (data.isDuplication == true) {
+							// 중복
+							$('#isDuplicationText').removeClass('d-none');
+							$('#availableUrlText').addClass('d-none');
+						} else {
+							// 사용가능
+							$('#availableUrlText').removeClass('d-none');
+							$('#isDuplicationText').addClass('d-none');
+						}
+					}
+				});
+			});
+			
+			
+			// 즐겨찾기 추가
 			$('#addFavoriteBtn').on('click', function(e) {
 				var title = $('#title').val().trim();
 				var url = $('#url').val().trim();
@@ -47,8 +79,14 @@
 					return;
 				}
 				
-				if (url.startsWith("http") == false && url.startsWith("https") == false) {
+				if (url.startsWith("http://") == false || url.startsWith("https://")) {
 					alert("주소 형식이 잘못되었습니다.");
+					return;
+				}
+				
+				// quiz02 - 중복확인 체크
+				if ($('#availableUrlText').hasClass('d-none')) {
+					alert("중복된 url 입니다. 다시 중복확인을 해주세요.");
 					return;
 				}
 				
@@ -56,9 +94,7 @@
 					type:'post'
 					, url: '/lesson06/quiz01/add_favorite'
 					, data: {'title':title, 'url':url}
-					, dataType: 'json'   // response body 
 					, success: function(data) {
-						//- AJAX 통신 후 response로는 String 또는 JSON이 리턴되어야 한다.
 						//alert(data.result);
 						if (data.result == 'success') {
 							location.href = "/lesson06/quiz01/favorite_list";
@@ -66,14 +102,6 @@
 					}, error:function(e) {
 						alert("error:" + e);
 					} 
-				});
-				
-				
-				$.ajax({
-					type : "post",
-					url : "lesson06/quiz02/check_duplication_url",
-					data : {"url" : url},
-					
 				});
 			});
 		});

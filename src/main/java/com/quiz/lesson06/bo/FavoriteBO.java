@@ -22,6 +22,10 @@ public class FavoriteBO {
 	}
 	
 	public Favorite getFavoriteByUrl(String url) {
-		return favoriteDAO.selectFavoriteByUrl();
+		return favoriteDAO.selectFavoriteByUrl(url);
+	}
+	
+	public int deleteFavoriteById(int id) {
+		return favoriteDAO.deleteFavoriteById(id);
 	}
 }
