@@ -78,11 +78,36 @@
 					url : "/lesson06/booking/add_booking",
 					data : {"name" : name, "date" : date, "day" : day, "headcount" : headcount, "phoneNumber" : phoneNumber,},
 					success : function(data) {
-						alert(data);
-						location.href = "/lesson06/booking/get_booking"
+						alert(data.result);
+						location.href = "/lesson06/booking/booking_main"
+					},
+					error : function(data) {
+						alert("error : " + data.result);
+						alert(data.error_message);
+					}
+				});
+			});
+			
+			$('.deleteBtn').on('click', function() {
+				let bookingId = $(this).data('booking-id');
+				
+				$.ajax({
+					// resquest
+					type : "DELETE",
+					url : "/lesson06/booking/delete_booking",
+					data : {"id" : bookingId},
+					
+					// response
+					success : function(data) {
+						if (data.result_code == 1) {
+							alert("삭제되었습니다.")
+							location.reload();
+						} else {
+							alert(data.error_message);
+						}
 					},
 					error : function(e) {
-						alert("error : " + e);
+						alert("삭제가 실패했습니다.")
 					}
 				});
 			});

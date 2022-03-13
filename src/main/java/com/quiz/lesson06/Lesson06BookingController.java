@@ -1,10 +1,13 @@
 package com.quiz.lesson06;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,16 +32,47 @@ public class Lesson06BookingController {
 		return "lesson06/booking_main";
 	}
 	
+	// 예약 삭제하기 - ajax 요청
+	@ResponseBody
+	@DeleteMapping("/delete_booking")
+	public Map<String, Object> deleteBooking(
+			@RequestParam("id") int id) {
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		int count = bookingBO.deleteBookingById(id);
+		if (count > 0) {
+			result.put("result", "success");
+			result.put("result_code", 1);
+		} else {
+			result.put("result", "erroe");
+			result.put("result_code", 500);
+			result.put("error_message", "삭제가 실패했습니다.");
+		}
+		
+		return result;
+	}
+	
+	
+	// 예약 추가하기 - ajax 요청
 	@ResponseBody
 	@PostMapping("/add_booking")
-	public String addBooking(
+	public Map<String, Object> addBooking(
 			@RequestParam("name") String name,
 			@RequestParam("date") String date,
 			@RequestParam("day") int day,
 			@RequestParam("headcount") int headcount,
 			@RequestParam("phoneNumber") String phoneNumber) {
 		
-		bookingBO.addNewBooking(name, date, day, headcount, phoneNumber);
-		return "success";
+		Map<String, Object> result = new HashMap<>();
+		
+		int count = bookingBO.addNewBooking(name, date, day, headcount, phoneNumber);
+		if (count > 0) {
+			result.put("result", "success");
+		} else {
+			result.put("result", "error");
+			result.put("error_message", "예약에 실패하였습니다.");
+		}
+		return result;
 	}
 }

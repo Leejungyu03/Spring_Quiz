@@ -36,7 +36,7 @@
 					</c:otherwise>
 				</c:choose>
 				</td>
-				<td><button type="button" class="btn btn-danger">삭제</button></td>
+				<td><button type="button" class="deleteBtn btn btn-danger" data-booking-id="${bookingList.id}">삭제</button></td>
 			</tr>
 		</c:forEach>
 		</tbody>

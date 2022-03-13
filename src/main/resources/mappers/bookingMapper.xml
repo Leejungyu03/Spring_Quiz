@@ -38,4 +38,12 @@
 			,'대기중'
 		)
  	</insert>
+ 	
+ 	<delete id="deleteBookingById" parameterType="int">
+ 		DELETE
+ 		FROM 
+ 			`booking`
+ 		WHERE
+ 			`id` = #{id}	
+ 	</delete>
  </mapper>
