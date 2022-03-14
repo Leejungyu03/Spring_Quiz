@@ -22,6 +22,7 @@
 		<jsp:include page="nav.jsp" />
 		<jsp:include page="booking_list.jsp" />
 		<jsp:include page="booking_add.jsp" />
+		<jsp:include page="booking_check.jsp" />
 		<jsp:include page="footer.jsp" />
 	</div>
 	
@@ -74,7 +75,7 @@
 				phoneNumber = phoneNumber.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
 				
 				$.ajax({
-					type : "POSt",
+					type : "POST",
 					url : "/lesson06/booking/add_booking",
 					data : {"name" : name, "date" : date, "day" : day, "headcount" : headcount, "phoneNumber" : phoneNumber,},
 					success : function(data) {
@@ -112,14 +113,61 @@
 				});
 			});
 			
+			$('#checkBtn').on('click', function() {
+				
+				let name = $('#checkName').val().trim();
+				if (name == '') {
+					alert("이름을 입력해주세요");
+					return;
+				}
+				
+				let phoneNumber = $('#checkPhoneNumber').val().trim();
+				if (phoneNumber == '') {
+					alert("전화번호를 입력해주세요");
+					return;
+				}
+				if (!phoneNumber.startsWith('010') || phoneNumber.length < 11) {
+					alert("전화번호를 제대로 입력하세요");
+					return;
+				}
+				phoneNumber = phoneNumber.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+				
+				$.ajax({
+					type : "POST",
+					url : "/lesson06/booking/check_booking",
+					data : {"name" : name, "phoneNumber" : phoneNumber},
+					success : function(data) {
+						if (data.isDuplication == true) {
+							let date = data.result.date.slice(0, 10);
+							alert(
+									"이름 : " + data.result.name + "\n" +
+									"날짜 : " + data.result.date + "\n" +
+									"일수 : " + data.result.day + "\n" +
+									"인원 : " + data.result.headcount + "\n" +
+									"상태 : " + data.result.state
+								);
+						} else {
+							alert("예약 내역이 없습니다.");
+						}
+					}
+				})
+			});
+			
 			
 			$('#list').on('click', function() {
 				$('.booking-list').removeClass('d-none');
 				$('.booking-add').addClass('d-none');
+				$('.booing-check').addClass('d-none');
 			});
 			
 			$('#add').on('click', function() {
 				$('.booking-add').removeClass('d-none');
+				$('.booking-list').addClass('d-none');
+				$('.booing-check').addClass('d-none');
+			});
+			$('#check').on('click', function() {
+				$('.booing-check').removeClass('d-none');
+				$('.booking-add').addClass('d-none');
 				$('.booking-list').addClass('d-none');
 			});
 			

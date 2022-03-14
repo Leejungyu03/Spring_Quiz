@@ -5,10 +5,15 @@
 	width: 1200px;
 }
 header {
-	width: 100%;
+	width: 1200px;
+	cursor: pointer;
 }
 nav {
+	width: 1200px;
 	background-color: rgb(227, 135, 31);
+}
+section {
+	width: 1200px;
 }
 
 .booking-list .list-text {
@@ -16,15 +21,70 @@ nav {
 	font-size: 30px;
 }
 
-.booking-add{
+.booking-add .insert{
 	width: 45%;
-	margin-left: 25%;
+	margin-left: 30%;
 }
 .booking-add .add-text {
 	font-weight: 600;
 	font-size: 30px;
 }
 
+.booing-check .banner {
+	width: 100%;
+}
+.booing-check .check {
+	height: 250px;
+}
+.booing-check .check .left-text {
+	width: 30%;
+	background-color: rgb(177, 82, 15);
+	text-align: left;
+}
+.booing-check .check .left-text span {
+	position: relative;
+	top: 50px;
+	left: 80px;
+	font-size: 50px;
+	color: white;
+}
+.booing-check .check .input-check {
+	width: 35%;
+	background-color: rgb(207, 99, 23);
+	color: white;
+}
+.booing-check .check .input-check .check-text {
+	font-size: 30px;
+	color: white;
+	margin-left: 30px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.booing-check .check .input-check .text-aligh {
+	text-align: center;
+}
+.booing-check .check .input-check input[type=text] {
+	width: 50%;
+	border: 0;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+}
+.booing-check .check .input-check button {
+	position: relative;;
+	left: 280px;
+}
+.booing-check .check .right-text {
+	width: 35%;
+	background-color: rgb(177, 82, 15);
+}
+.booing-check .check .right-text span {
+	position: relative;
+	top: 50px;
+	left: 120px;
+	font-size: 35px;
+	color: white;
+}
 
 footer span {
 	font-size: 14px;

@@ -26,7 +26,7 @@
 			,`day`
 			,`date`
 			,`phoneNumber`
-			, `state`
+			,`state`
 		)
 		VALUES
 		(
@@ -46,4 +46,19 @@
  		WHERE
  			`id` = #{id}	
  	</delete>
+ 	
+ 	<select id="selectBookingByName" resultType="com.quiz.lesson06.model.Booking">
+ 		SELECT
+ 			`name`
+			,`headcount`
+			,`day`
+			,`date`
+			,`state`
+		FROM
+			`booking`
+		WHERE
+				`name` = #{name} 
+			AND
+				`phoneNumber` = #{phoneNumber}
+ 	</select>
  </mapper>

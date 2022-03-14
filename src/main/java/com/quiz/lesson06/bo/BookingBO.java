@@ -25,4 +25,8 @@ public class BookingBO {
 	public int deleteBookingById(int id) {
 		return BookingDAO.deleteBookingById(id);
 	}
+	
+	public Booking getBookingByName(String name, String phoneNumber) {
+		return BookingDAO.selectBookingByName(name, phoneNumber);
+	}
 }

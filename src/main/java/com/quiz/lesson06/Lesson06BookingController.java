@@ -75,4 +75,24 @@ public class Lesson06BookingController {
 		}
 		return result;
 	}
+	
+	// 예약 내역 체크하기 - ajax 요청
+	@ResponseBody
+	@PostMapping("/check_booking")
+	public Map<String, Object> checkDuplicationName(
+			Model model,
+			@RequestParam("name") String name,
+			@RequestParam("phoneNumber") String phoneNumber) {
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("isDuplication", false);
+		
+		Booking booking = bookingBO.getBookingByName(name, phoneNumber);
+		if (booking != null) {
+			result.put("isDuplication", true);
+			result.put("result", booking);
+		}
+		
+		return result;
+	}
 }

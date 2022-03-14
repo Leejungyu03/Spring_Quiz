@@ -20,4 +20,8 @@ public interface BookingDAO {
 			@Param("phoneNumber") String phoneNumber);
 	
 	public int deleteBookingById(int id);
+	
+	public Booking selectBookingByName(
+			@Param("name") String name,
+			@Param("phoneNumber") String phoneNumber);
 }

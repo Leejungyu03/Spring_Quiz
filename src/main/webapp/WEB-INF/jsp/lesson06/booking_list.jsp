@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<section class="booking-list">
+<section class="booking-list d-none">
 	<div class="list-text text-center mt-4 mb-4">예약 목록 보기</div>
 	<table class="table text-center">
 		<thead>
