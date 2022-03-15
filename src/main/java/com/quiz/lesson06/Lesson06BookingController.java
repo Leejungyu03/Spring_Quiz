@@ -80,7 +80,6 @@ public class Lesson06BookingController {
 	@ResponseBody
 	@PostMapping("/check_booking")
 	public Map<String, Object> checkDuplicationName(
-			Model model,
 			@RequestParam("name") String name,
 			@RequestParam("phoneNumber") String phoneNumber) {
 		

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <section class="booing-check">
 	<article class="banner">
-		<img src="/image/lesson06/test06_banner4.jpg">
+		<img id="bannerImage" src="/image/lesson06/test06_banner1.jpg">
 	</article>
 	<article class="check d-flex">
 		<div class="left-text">

@@ -138,10 +138,9 @@
 					data : {"name" : name, "phoneNumber" : phoneNumber},
 					success : function(data) {
 						if (data.isDuplication == true) {
-							let date = data.result.date.slice(0, 10);
 							alert(
 									"이름 : " + data.result.name + "\n" +
-									"날짜 : " + data.result.date + "\n" +
+									"날짜 : " + data.result.date.slice(0, 10) + "\n" +
 									"일수 : " + data.result.day + "\n" +
 									"인원 : " + data.result.headcount + "\n" +
 									"상태 : " + data.result.state
@@ -176,6 +175,16 @@
 				changeYear : true, // 년 셀렉트 박스 
 				dateFormat : "yy-mm-dd", // 표시 포멧 
 			});
+			
+			let bannerList = ["/image/lesson06/test06_banner2.jpg", "/image/lesson06/test06_banner3.jpg","/image/lesson06/test06_banner4.jpg","/image/lesson06/test06_banner1.jpg"];
+			let currentIndex = 0;
+			setInterval(function() {
+				$('#bannerImage').attr("src", bannerList[currentIndex]);
+				currentIndex++;
+				if (currentIndex == bannerList.length()) {
+					currentIndex = 0;
+				}
+			}, 3000);
 		});
 	</script>
 </body>
